@@ -71,4 +71,15 @@ int main(int argc,char** argv)
     cout<<"X-coordinates: ";cin>>pntX1;
     cout<<"\n Y-coordinates: ";cin>>pntY1;
     cout<<"\n Enter Radius: ";cin>>r;
+     
+    glutInit(&argc,argv);
+    glutInitDisplayMode(GLUT_RGB);
+    glutInitWindowPosition(100,100);
+    glutInitWindowSize(500,500);
+    glutCreateWindow("Line Drawing Algorithm");
+    myInit();
+    glutDisplayFunc(myDisplay);
+     
+    glutMainLoop();
+    return 0;
 }
