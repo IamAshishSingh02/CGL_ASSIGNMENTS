@@ -43,6 +43,39 @@ class Line
           glutPostRedisplay();
           glFlush();
      }
+     
+     void Bresenham(void)
+     {
+          cout<<"Bresenham"<<endl;
+          float dy,dx,x,y,pk;
+          dx=X2-X1;
+          dy=Y2-Y1;
+          x=X1;
+          y=Y1;
+          pk=2*dy-dx;
+
+          glBegin(GL_POINTS);
+          for(int k=0;k<=dx;k++)
+          {
+               glColor3f(0.0,0.5,0.0);
+               glVertex2i(x,y);
+               if(pk<0)
+               {
+                    pk+=2*dy;
+                    x+=1;
+               }
+               else
+               {
+                    pk+=2*dy-2*dx;
+                    x+=1;
+                    y+=1;
+               }
+          }
+          glEnd();
+          glutPostRedisplay();
+          glFlush();
+     }
+     
      public:
        static void display()
        {
