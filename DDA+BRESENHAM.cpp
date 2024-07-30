@@ -43,7 +43,7 @@ class Line
           glutPostRedisplay();
           glFlush();
      }
-     
+
      void Bresenham(void)
      {
           cout<<"Bresenham"<<endl;
@@ -75,15 +75,15 @@ class Line
           glutPostRedisplay();
           glFlush();
      }
-     
+
      public:
        static void display()
        {
              Line l;
              switch(selection)
              {
-                   case 1: l.LineDDA();
-                break;
+                   case 1: l.LineDDA();break;
+                   case 2: l.Bresenham();break;
              }
        }
 };
@@ -107,12 +107,14 @@ void keyboard(unsigned char key, int x, int y)
 {
     if(key== 27) exit(0);
     else if(key=='d' || key=='D') selection=1;
+    else if(key=='b' || key=='B') selection=2;
 }
 
 void createMenu()
 {
     int s_id=glutCreateMenu(lineGeneration);
     glutAddMenuEntry("DDA Algoritm", 1);
+    glutAddMenuEntry("BRESENHAM Algorithm", 2);
     int m_id=glutCreateMenu(lineGeneration);
     glutAddSubMenu("Algorithm", s_id);
     glutAddMenuEntry("Exit", 4);
@@ -133,7 +135,7 @@ int main(int argc, char **argv)
     glutCreateWindow("Line Generation");
     Init();
     glutDisplayFunc(Line::display);
-    //createMenu();
+    createMenu();
     glutMainLoop();
     return 0;
 }
