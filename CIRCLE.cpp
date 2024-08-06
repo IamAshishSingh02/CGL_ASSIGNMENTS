@@ -1,4 +1,3 @@
-#include<GLUT/glut.h>
 #include<GL/glut.h>
 #include<stdlib.h>
 #include<stdio.h>
@@ -15,9 +14,9 @@ void plot(int x,int y)
      glEnd();
 }
 
-void muInit(void)
+void myInit(void)
 {
-     glClearColor(1.0.1.0,1.0,0.0);
+     glClearColor(1.0,1.0,1.0,0.0);
      glColor3f(0.0f,0.0f,0.0f);
      glPointSize(4.0);
      glMatrixMode(GL_PROJECTION);
@@ -29,7 +28,7 @@ void midPointCircleAlgo()
 {
      int x=0;
      int y=r;
-     float decision=5/4-r;
+     float decision=5.0/4.0-r;
      plot(x,y);
 
      while(y>x)
@@ -37,30 +36,30 @@ void midPointCircleAlgo()
           if(decision<0)
           {
                x++;
-               decision+=2*X+1;
+               decision+=2*x+1;
           }
           else
           {
-               plot(x,y);
-               plot(x,-y);
-               plot(-x,y);
-               plot(-x,-y);
-               plot(y,x);
-               plot(-y,x)
-               plot(y,-x);
-               plot(-y,-x);
+               y--;
+               x++;
+               decision+=2*(x-y)+1;
           }
-          y--;
-          x++;
-          decision+=2*(x-y)+1;
+          plot(x,y);
+          plot(x,-y);
+          plot(-x,y);
+          plot(-x,-y);
+          plot(y,x);
+          plot(-y,x);
+          plot(y,-x);
+          plot(-y,-x);
      }
 }
 
 void myDisplay(void)
 {
      glClear(GL_COLOR_BUFFER_BIT);
-     glColor3f(0.0,0.0,0.0)
-     glPointSize(1.0)
+     glColor3f(0.0,0.0,0.0);
+     glPointSize(1.0);
      midPointCircleAlgo();
      glFlush();
 }
@@ -71,7 +70,7 @@ int main(int argc,char** argv)
     cout<<"X-coordinates: ";cin>>pntX1;
     cout<<"\n Y-coordinates: ";cin>>pntY1;
     cout<<"\n Enter Radius: ";cin>>r;
-     
+
     glutInit(&argc,argv);
     glutInitDisplayMode(GLUT_RGB);
     glutInitWindowPosition(100,100);
@@ -79,7 +78,7 @@ int main(int argc,char** argv)
     glutCreateWindow("Line Drawing Algorithm");
     myInit();
     glutDisplayFunc(myDisplay);
-     
+
     glutMainLoop();
     return 0;
 }
